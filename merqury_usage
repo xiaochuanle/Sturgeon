@@ -1,0 +1,9 @@
+conda create -n merqury -c conda-forge -c bioconda merqury openjdk=11
+
+conda activate merqury
+
+sh $MERQURY/best_k.sh 180000000  # 180000000是基因组大小，该命令用于选择最优kmer length
+
+meryl k=19 count output FRUITFLY.REVIO_NATIVE.meryl FRUITFLY.REVIO_NATIVE.fasta  # 利用风度简历基因组高质量kmer meryl数据库，FRUITFLY.REVIO_NATIVE.fasta是Hifi或者二代测序reads
+
+merqury.sh FRUITFLY.REVIO_NATIVE.meryl $FA ${FA%.fasta} # $FA是待测试基因组或者reads的fasta文件； ${FA%.fasta}是输出文件前缀名
